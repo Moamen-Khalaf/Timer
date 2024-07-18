@@ -1,0 +1,115 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --main-color: #680f2d;
+  --sec-color: #e91e63;
+}
+.timer {
+  width: 250px;
+  margin: 30px auto;
+  border-radius: 20px;
+  background-color: var(--sec-color);
+  display: flex;
+  row-gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: baseline;
+  align-content: space-around;
+  padding: 20px 0;
+}
+.inputs {
+  width: 80%;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--main-color);
+  border-radius: 15px;
+  color: #ffffff;
+}
+.timer input {
+  width: calc(100% / 3);
+  height: 25px;
+  outline: none;
+  border: none;
+  text-align: center;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: transparent;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.timer button {
+  width: 80%;
+  height: 3rem;
+  margin: 0 20px;
+  padding: 5px 0;
+  background-color: var(--main-color);
+  border: none;
+  border-radius: 15px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+.timer button:hover {
+  color: #e91e63;
+}
+.counter {
+  height: 9rem;
+  margin: 0 20%;
+  background-color: transparent;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  animation-duration: 0.9s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+.counter .prog {
+  content: "";
+  position: absolute;
+  background-color: var(--main-color);
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+}
+.counter p {
+  font-size: larger;
+  font-weight: bold;
+  z-index: 2;
+  font-size: 2rem;
+  color: #ffffff;
+}
+
+.timer select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  padding: 0.2rem;
+  text-align: center;
+  border-radius: 50%;
+  height: 32px;
+  aspect-ratio: 1 / 1;
+  font-weight: bold;
+  color: var(--sec-color);
+}
+.timer select:focus {
+  outline: none;
+}
+@keyframes grow {
+  to {
+    scale: 1.09;
+  }
+}
