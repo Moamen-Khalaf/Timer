@@ -48,10 +48,7 @@ let timeEnd = () => {
   timerContain.style.animationName = "grow";
   timer.style.color = "#fff700";
 };
-document.querySelectorAll("button")[0].onclick = () => {
-  seconds =
-    +inputs[2].value + +inputs[1].value * 60 + +inputs[0].value * 60 * 60;
-  totSeconds = seconds;
+let update = () => {
   if (seconds === 0) {
     return;
   }
@@ -59,13 +56,22 @@ document.querySelectorAll("button")[0].onclick = () => {
     timer.innerHTML = secondsToHMS(seconds);
     progress.style.height = `${(seconds / totSeconds) * 100}%`;
     seconds--;
-    if (seconds === -1) {
+    if (seconds <= -1) {
       timeEnd();
     }
   }, 1000);
+};
+document.querySelectorAll("button")[0].onclick = () => {
+  document.querySelectorAll("button")[1].innerHTML = "Pause";
+  document.querySelectorAll("button")[1].style.color = "#fff";
+  seconds =
+    +inputs[2].value + +inputs[1].value * 60 + +inputs[0].value * 60 * 60;
+  totSeconds = seconds;
   inputs.forEach((ele) => {
     ele.value = "00";
   });
+  clearInterval(counter);
+  update();
 };
 document.querySelectorAll("button")[1].onclick = (eve) => {
   if (seconds <= 0) return;
@@ -76,13 +82,7 @@ document.querySelectorAll("button")[1].onclick = (eve) => {
   } else {
     document.querySelectorAll("button")[1].innerHTML = "Pause";
     document.querySelectorAll("button")[1].style.color = "#fff";
-    counter = setInterval(function () {
-      timer.innerHTML = secondsToHMS(seconds);
-      seconds--;
-      if (seconds === -1) {
-        timeEnd();
-      }
-    }, 1000);
+    update();
   }
 };
 document.querySelectorAll("button")[2].onclick = () => {
@@ -90,6 +90,8 @@ document.querySelectorAll("button")[2].onclick = () => {
   inputs.forEach((ele) => {
     ele.value = "00";
   });
+  seconds = 0;
+  totSeconds = 0;
   timer.innerHTML = "00:00:00";
   audio.pause();
   progress.style.height = "100%";
